@@ -9,10 +9,10 @@ interface LayoutMainProps {
 export default function LayoutMain({ children }: Readonly<LayoutMainProps>) {
   return (
     <main className="bg-background text-foreground min-h-screen">
-      <header className="relative z-50 flex items-center justify-between px-10 py-6">
+      <header className="bg-background/70 fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-violet-500/10 px-10 py-6 backdrop-blur-md">
         <a
           href="/"
-          className="text-xl font-semibold tracking-widest text-violet-400 uppercase transition-colors hover:text-violet-300"
+          className="text-xl font-semibold tracking-widest uppercase transition-colors hover:text-violet-300"
         >
           {import.meta.env.VITE_NAME_PORTFOLIO}
         </a>
@@ -62,9 +62,11 @@ export default function LayoutMain({ children }: Readonly<LayoutMainProps>) {
           ))}
           <ModeToggle />
         </nav>
+        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
       </header>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
-      <section className="relative px-10 py-12">{children}</section>
+      <section className="relative min-h-full w-full px-10 py-12 pt-32">
+        {children}
+      </section>
     </main>
   );
 }

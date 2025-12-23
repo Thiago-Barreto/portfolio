@@ -24,7 +24,7 @@ import { TbBrandCSharp } from "react-icons/tb";
 export default function Home() {
   return (
     <LayoutMain>
-      <div className="flex min-h-full w-full items-center justify-around">
+      <div className="mt-10 flex min-h-full w-full items-center justify-around gap-10">
         <section className="relative flex min-h-[full] flex-col items-center justify-center text-center">
           {/* STATUS */}
           <motion.div
@@ -80,7 +80,7 @@ export default function Home() {
             </a>
           </motion.div>
         </section>
-        <div className="relative h-[420px] w-[420px]">
+        <div className="relative h-105 w-105">
           <OrbitRing
             radius={180}
             speed={60}
