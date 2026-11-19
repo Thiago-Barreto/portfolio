@@ -1,37 +1,29 @@
-import { Moon, Sun } from "lucide-react";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useTheme } from "@/components/theme-provider";
+import { Moon, Sun } from "lucide-react"
 
-export function ModeToggle() {
-  const { setTheme } = useTheme();
+import { getSystemTheme, useTheme } from "@/components/theme-provider"
+
+/** Alterna entre escuro (padrão) e claro com um clique. */
+export function ModeToggle({ className = "" }: Readonly<{ className?: string }>) {
+  const { theme, setTheme } = useTheme()
+  const isDark =
+    theme === "dark" || (theme === "system" && getSystemTheme() === "dark")
+  const label = isDark ? "Mudar para tema claro" : "Mudar para tema escuro"
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={label}
+      title={label}
+      className={`flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground ${className}`}
+    >
+      {isDark ? (
+        <Sun className="h-[1.1rem] w-[1.1rem]" />
+      ) : (
+        <Moon className="h-[1.1rem] w-[1.1rem]" />
+      )}
+    </button>
+  )
 }

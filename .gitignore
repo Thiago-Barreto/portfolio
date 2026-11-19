@@ -9,6 +9,10 @@ lerna-debug.log*
 
 node_modules
 dist
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
 dist-ssr
 *.local
 
@@ -22,3 +26,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables (SENSITIVE!)
+.env
+.env.local
+.env.production
+
+# playwright mcp artifacts
+.playwright-mcp
